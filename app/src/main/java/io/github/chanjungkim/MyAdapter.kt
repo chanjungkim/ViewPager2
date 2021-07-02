@@ -23,11 +23,17 @@ class MyAdapter(
             holder.imageView.animate()
                 .setDuration(500)
                 .alpha(1f)
+                .withEndAction {
+                    notifyItemChanged(position)
+                }
                 .start()
         }else{
             holder.imageView.animate()
                 .setDuration(1000)
                 .alpha(0.1f)
+                .withEndAction {
+                    notifyItemChanged(position)
+                }
                 .start()
         }
         holder.imageView.setBackgroundColor(context.getColor(item.color))
@@ -39,10 +45,6 @@ class MyAdapter(
 
     fun focus(position: Int){
         focusIdx = position
-        colors.forEachIndexed { index, myItem ->
-            myItem.isFocused = position == index
-        }
-        notifyDataSetChanged()
     }
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
