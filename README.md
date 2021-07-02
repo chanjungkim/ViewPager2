@@ -4,6 +4,6 @@
 
 <style type="text/css">
     img {
-        width: 250px;
+        width: 50px;
     }
 </style>
