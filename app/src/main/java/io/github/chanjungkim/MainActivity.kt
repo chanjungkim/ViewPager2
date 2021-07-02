@@ -9,18 +9,16 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity() {
+    val mArray by lazy {
+        resources.getStringArray(R.array.my_colors)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val mViewPager2 = findViewById<ViewPager2>(R.id.vp)
-        val mAdapter = MyAdapter(
-            listOf<MyItem>(
-                MyItem(R.color.black, true), MyItem(R.color.purple_200, false), MyItem(R.color.teal_200, false),
-                MyItem(R.color.black, false), MyItem(R.color.purple_200, false), MyItem(R.color.teal_200, false),
-                MyItem(R.color.black, false), MyItem(R.color.purple_200, false), MyItem(R.color.teal_200, false),
-                MyItem(R.color.black, false), MyItem(R.color.purple_200, false), MyItem(R.color.teal_200, false),
-                ))
+        val mAdapter = MyAdapter(mArray.toList())
         mViewPager2.adapter = mAdapter
         mViewPager2.clipToPadding = false
         mViewPager2.clipChildren = false
@@ -41,6 +39,12 @@ class MainActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 mAdapter.focus(position)
+                Log.d("cnt", "${mAdapter.getItemCount()}")
+                Log.d("cnt", "left: ${mAdapter.itemCount - position}")
+                if(mAdapter.itemCount - position == 2){
+                    mAdapter.addMore(mArray.toList())
+                    Log.d("cnt", "after add: ${mAdapter.getItemCount()}")
+                }
             }
         })
     }

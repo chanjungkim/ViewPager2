@@ -1,14 +1,14 @@
 package io.github.chanjungkim
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter(
-    val colors: List<MyItem>
-): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(colors: List<String>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+    var colors = colors
     var focusIdx = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -36,7 +36,7 @@ class MyAdapter(
                 }
                 .start()
         }
-        holder.imageView.setBackgroundColor(context.getColor(item.color))
+        holder.imageView.setBackgroundColor(Color.parseColor(item))
     }
 
     override fun getItemCount(): Int {
@@ -45,6 +45,12 @@ class MyAdapter(
 
     fun focus(position: Int){
         focusIdx = position
+    }
+
+    fun addMore(items: List<String>){
+        colors = colors.toMutableList().apply {
+            addAll(items)
+        }.toList()
     }
 
     inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <string-array name="my_colors">
+        <item name="red">#B30000</item>
+        <item name="pink">#9D5CCC</item>
+        <item name="blue">#1F37B5</item>
+        <item name="gray">#AAAAAA</item>
+        <item name="yellow">#FFEB3B</item>
+    </string-array>
 </resources>
