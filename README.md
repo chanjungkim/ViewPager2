@@ -2,8 +2,4 @@
 
 ![Sample](./sample.gif)
 
-<style type="text/css">
-    img {
-        width: 50px;
-    }
-</style>
+<img src="./sample.gif" width="100px"/>
